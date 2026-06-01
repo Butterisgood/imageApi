@@ -29,7 +29,14 @@ def image(url: str, size: int = 32):
 
         # QUALITY CONTROL (THIS IS YOUR NEW FEATURE)
         # size = 16 / 32 / 64 / 128 etc.
-        img = img.resize((size, size))
+w, h = img.size
+
+scale = size / max(w, h)
+
+new_w = int(w * scale)
+new_h = int(h * scale)
+
+img = img.resize((new_w, new_h))
 
         pixels = []
 
