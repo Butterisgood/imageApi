@@ -15,32 +15,26 @@ def home():
 def image(url: str, size: int = 32):
 
     try:
-        # Fix blocked requests (Imgur / Bing / etc.)
         headers = {
             "User-Agent": "Mozilla/5.0"
         }
 
-        # Download image
         r = requests.get(url, headers=headers, timeout=10)
         r.raise_for_status()
 
-        # Open image
         img = Image.open(BytesIO(r.content)).convert("RGB")
 
-        # QUALITY CONTROL (THIS IS YOUR NEW FEATURE)
-        # size = 16 / 32 / 64 / 128 etc.
-w, h = img.size
+        # QUALITY CONTROL (keep aspect ratio)
+        w, h = img.size
+        scale = size / max(w, h)
 
-scale = size / max(w, h)
+        new_w = max(1, int(w * scale))
+        new_h = max(1, int(h * scale))
 
-new_w = int(w * scale)
-new_h = int(h * scale)
-
-img = img.resize((new_w, new_h))
+        img = img.resize((new_w, new_h))
 
         pixels = []
 
-        # Convert to RGB grid
         for y in range(img.height):
             row = []
             for x in range(img.width):
