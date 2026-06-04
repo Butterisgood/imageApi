@@ -2,7 +2,6 @@ name: Sync to Hugging Face Space
 on:
   push:
     branches: [main]
-
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -14,4 +13,4 @@ jobs:
       - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push -f https://Butterisgood:$HF_TOKEN@huggingface.co/spaces/Butterisgood/imageApi main
+        run: git push -f https://Kissbox:$HF_TOKEN@huggingface.co/spaces/Kissbox/ImageAPI main
