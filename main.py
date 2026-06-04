@@ -13,7 +13,7 @@ from collections import defaultdict
 app = FastAPI()
 
 # ── Config ────────────────────────────────────────────────────────────────────
-MAX_SIZE = 128          # max pixel grid dimension
+MAX_SIZE = 1024          # max pixel grid dimension
 MIN_SIZE = 1
 MAX_IMAGE_BYTES = 10 * 1024 * 1024   # 10 MB download cap
 FETCH_TIMEOUT = 8       # seconds
